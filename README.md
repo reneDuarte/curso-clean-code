@@ -6,7 +6,6 @@ Projeto com exemplos do treinamento de Clean Code
 
 - Java 8 ou superior
 - IDE Java com plugin Maven
-- Para importar o arquivo "Java_Code_Style_Preferences.epf" é necessário usar a IDE Eclipse
 
 ## Para Baixar os Fontes
 
