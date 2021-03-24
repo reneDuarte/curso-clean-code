@@ -4,6 +4,8 @@ package br.com.wmw.cleancode.metodos.certo;
  * Cada método tem uma única responsabilidade.
  * Métodos ficaram menores.
  * Apenas uma condição aninhada.
+ * Não tem flags como parâmetros.
+ * Não tem muitos parâmetros em cada método.
  */
 public class PedidoService {
 
@@ -31,16 +33,16 @@ public class PedidoService {
 		return valor * (1 + (desconto / 100));
 	}
 
-	public Double calcularDesconto(final Double valor, final Integer quantidade, final Integer estoque, final boolean descontoPorQuantidade, final boolean descontoPorEstoque) {
+	public Double calcularDesconto(final Produto produto, final ConfigPedido configPedido) {
 		double desconto = 0;
-		if (descontoPorQuantidade) {
-			desconto = desconto + calculaDescontoPorQuantidade(quantidade);
+		if (configPedido.isUsaDescontoPorQuantidade()) {
+			desconto = desconto + calculaDescontoPorQuantidade(produto.getQuantidade());
 		}
-		if (descontoPorEstoque) {
-			desconto = desconto + calculaDescontoPorEstoque(estoque);
+		if (configPedido.isUsaDescontoPorEstoque()) {
+			desconto = desconto + calculaDescontoPorEstoque(produto.getEstoque());
 		}
 
-		return calculaDescontoSobreValor(valor, desconto);
+		return calculaDescontoSobreValor(produto.getValor(), desconto);
 	}
 
 }
