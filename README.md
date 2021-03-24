@@ -12,3 +12,7 @@ Projeto com exemplos do treinamento de Clean Code
 ```
 git clone https://github.com/wmwsystems/curso-clean-code.git 
 ```
+
+## Documentação
+
+[Slides da apresentação](docs/Apresentacao_CleanCode.pdf)
