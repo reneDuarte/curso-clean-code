@@ -2,3 +2,5 @@
 .classpath
 .project
 target/
+/exercicios-clean-code.iml
+/.idea/
