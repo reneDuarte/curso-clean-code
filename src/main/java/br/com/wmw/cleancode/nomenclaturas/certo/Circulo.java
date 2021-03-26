@@ -19,7 +19,7 @@ public class Circulo {
 	 * Foi utilizada uma constante para o PI
 	 */
 	public double calcularArea() {
-		return Math.PI * this.raio * this.raio;
+		return Math.PI * Math.pow(this.raio, 2);
 	}
 
 }
