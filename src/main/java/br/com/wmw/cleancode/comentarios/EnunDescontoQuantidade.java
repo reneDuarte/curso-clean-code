@@ -14,7 +14,7 @@ public enum EnunDescontoQuantidade {
 		this.qt = qt;
 	}
 
-	public static Double get(Integer qt){
+	public static Double getDesconto(Integer qt){
 		if(qt == null || qt == 0){
 			return 0D;
 		}

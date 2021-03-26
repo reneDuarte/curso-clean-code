@@ -6,31 +6,30 @@ public class PedidoService {
 
 	public Double calcularDesconto(final Double valor, final Integer quantidade, final Integer estoque, final boolean descontoPorEstoque, final boolean descontoPorQuantidade) {
 
-		Pedido pedido = new Pedido();
-		pedido.setValor(valor);
-		pedido.setQuantidade(quantidade);
-		pedido.setEstoque(estoque);
-		pedido.setDescontoPorEstoque(descontoPorEstoque);
-		pedido.setDescontoPorQuantidade(descontoPorQuantidade);
-
-		addPorcentagemDesconto(pedido);
-		setValorLiquidoPedido(pedido);
-		return pedido.geValorLiquido();
+		Produto produto = new Produto();
+		produto.setValor(valor);
+		produto.setQuantidade(quantidade);
+		produto.setEstoque(estoque);
+		produto.setDescontoPorEstoque(descontoPorEstoque);
+		produto.setDescontoPorQuantidade(descontoPorQuantidade);
+		addPorcentagemDesconto(produto);
+		setValorLiquidoPedido(produto);
+		return produto.geValorLiquido();
 	}
 
-	private void addPorcentagemDesconto(Pedido pedido) {
-		if (pedido.isDescontoPorQuantidade()) {
-			new AddPorcentagemDescontoQuantidad().addDesconto(pedido);
+	private void addPorcentagemDesconto(Produto produto) {
+		if (produto.isDescontoPorQuantidade()) {
+			new AddPorcentagemDescontoQuantidade().addDesconto(produto);
 		}
-		if (pedido.isDescontoPorEstoque()) {
-			new AddPorcentagemDescontoPorEstoque().addDesconto(pedido);
+		if (produto.isDescontoPorEstoque()) {
+			new AddPorcentagemDescontoPorEstoque().addDesconto(produto);
 		}
 	}
 
-	private void setValorLiquidoPedido(Pedido pedido){
-		pedido.seValorLiquido(execCalculaDesconto(pedido));
+	private void setValorLiquidoPedido(Produto produto){
+		produto.seValorLiquido(execCalculaDesconto(produto));
 	}
-	private Double  execCalculaDesconto(Pedido pedido){
-		return pedido.getDesconto() * (1 + (pedido.getDesconto() / 100));
+	private Double  execCalculaDesconto(Produto produto){
+		return produto.getDesconto() * (1 + (produto.getDesconto() / 100));
 	}
 }

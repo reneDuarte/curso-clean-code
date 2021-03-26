@@ -1,6 +1,6 @@
 package br.com.wmw.cleancode.comentarios;
 
-public class Pedido {
+public class Produto {
 	private Double desconto = 0D;
 	private Double valor;
 	private Integer quantidade;

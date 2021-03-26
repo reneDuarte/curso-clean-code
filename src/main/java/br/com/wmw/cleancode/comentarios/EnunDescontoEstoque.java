@@ -11,10 +11,10 @@ public enum EnunDescontoEstoque {
 		this.desconto = desconto;
 	}
 
-	public static Double get(Integer estoque){
+	public static Double getDesconto(Integer estoque){
 		if(estoque != null && estoque > 0){
 			for (EnunDescontoEstoque value : EnunDescontoEstoque.values()) {
-				if(estoque >= value.estoque){
+				if(estoque > value.estoque){
 					return value.desconto;
 				}
 			}
