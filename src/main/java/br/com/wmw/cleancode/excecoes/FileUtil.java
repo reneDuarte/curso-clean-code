@@ -22,7 +22,6 @@ public class FileUtil {
 		final File fileToRead = new File(fileName);
 		try (InputStream inputStream = getFileInputStream(fileToRead)) {
 			final StringBuilder conteudo = new StringBuilder();
-
 			int data;
 			while ((data = inputStream.read()) != -1) {
 				conteudo.append((char) data);
