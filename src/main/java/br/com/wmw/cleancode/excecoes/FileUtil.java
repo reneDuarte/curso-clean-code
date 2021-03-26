@@ -14,11 +14,7 @@ import java.io.InputStream;
 //TODO: Evitar o print de stack trace sem dar nenhum retorno sobre a exceção
 public class FileUtil {
 
-	private FileUtil() {
-
-	}
-
-	public static String loadFile(final String fileName) {
+	public String loadFile(final String fileName) {
 		final File fileToRead = new File(fileName);
 		try (InputStream inputStream = getFileInputStream(fileToRead)) {
 			final StringBuilder conteudo = new StringBuilder();
@@ -32,7 +28,7 @@ public class FileUtil {
 		}
 	}
 
-	private static InputStream getFileInputStream(File fileToRead) {
+	private InputStream getFileInputStream(File fileToRead) {
 		try {
 			return new FileInputStream(fileToRead);
 		} catch (FileNotFoundException e) {
