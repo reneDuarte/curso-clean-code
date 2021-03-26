@@ -9,40 +9,40 @@ package br.com.wmw.cleancode.metodos.certo;
  */
 public class PedidoService {
 
-	private Double calculaDescontoPorQuantidade(final Integer quantidade) {
-		if (quantidade >= 100) {
-			return 20D;
-		} else if (quantidade >= 50) {
-			return 10D;
-		} else if (quantidade >= 10) {
-			return 5D;
-		} else {
-			return 0D;
+	private double calcularDescontoPorQuantidade(final Integer quantidade) {
+		if (quantidade >= DescontoQuantidade.FAIXA_UM.getQuantidadeMinima()) {
+			return DescontoQuantidade.FAIXA_UM.getDesconto();
+		} else if (quantidade >= DescontoQuantidade.FAIXA_DOIS.getQuantidadeMinima()) {
+			return DescontoQuantidade.FAIXA_DOIS.getDesconto();
+		} else if (quantidade >= DescontoQuantidade.FAIXA_TRES.getQuantidadeMinima()) {
+			return DescontoQuantidade.FAIXA_TRES.getDesconto();
 		}
+		return 0;
 	}
 
-	private Double calculaDescontoPorEstoque(final Integer estoque) {
-		if (estoque > 1000) {
-			return 5D;
-		} else {
-			return 0D;
+	private double calculaDescontoPorEstoque(final Integer estoque) {
+		if (estoque > DescontoEstoque.FAIXA_UM.getQuantidadeMinima()) {
+			return DescontoEstoque.FAIXA_UM.getDesconto();
 		}
+		return 0;
 	}
 
-	private Double calculaDescontoSobreValor(final Double valor, final Double desconto) {
+	private double calculaDescontoSobreValor(final Double valor, final Double desconto) {
 		return valor * (1 + (desconto / 100));
 	}
 
-	public Double calcularDesconto(final Produto produto, final ConfigPedido configPedido) {
-		double desconto = 0;
+	public Double calcularDescontoProduto(final Produto produto, final ConfigPedido configPedido) {
+		double descontoTotal = 0;
+
 		if (configPedido.isUsaDescontoPorQuantidade()) {
-			desconto = desconto + calculaDescontoPorQuantidade(produto.getQuantidade());
-		}
-		if (configPedido.isUsaDescontoPorEstoque()) {
-			desconto = desconto + calculaDescontoPorEstoque(produto.getEstoque());
+			descontoTotal += calcularDescontoPorQuantidade(produto.getQuantidade());
 		}
 
-		return calculaDescontoSobreValor(produto.getValor(), desconto);
+		if (configPedido.isUsaDescontoPorEstoque()) {
+			descontoTotal += calculaDescontoPorEstoque(produto.getEstoque());
+		}
+
+		return calculaDescontoSobreValor(produto.getValor(), descontoTotal);
 	}
 
 }
