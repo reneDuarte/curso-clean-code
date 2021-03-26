@@ -18,26 +18,26 @@ public class FileUtil {
 
 	}
 
-	public String loadFile(final String fileName) throws FileNotFoundException {
+	public static String loadFile(final String fileName) {
 		final File fileToRead = new File(fileName);
-		final InputStream inputStream = new FileInputStream(fileToRead);
-		try {
+		try (InputStream inputStream = getFileInputStream(fileToRead)) {
 			final StringBuilder conteudo = new StringBuilder();
 
 			int data;
 			while ((data = inputStream.read()) != -1) {
 				conteudo.append((char) data);
 			}
-
 			return conteudo.toString();
-		} catch (final Exception e) {
-			return null;
-		} finally {
-			try {
-				inputStream.close();
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
+		} catch (IOException e) {
+			throw new ExceptionIOException("Falha ao ler ou Fechar o arquivo", e);
+		}
+	}
+
+	private static InputStream getFileInputStream(File fileToRead) {
+		try {
+			return new FileInputStream(fileToRead);
+		} catch (FileNotFoundException e) {
+			throw new ExceptioFileInputStream("Falha ao abrir o arquivo", e);
 		}
 	}
 

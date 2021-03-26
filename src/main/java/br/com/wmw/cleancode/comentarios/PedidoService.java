@@ -14,25 +14,23 @@ public class PedidoService {
 		pedido.setDescontoPorQuantidade(descontoPorQuantidade);
 
 		addPorcentagemDesconto(pedido);
-
-		//Retorna o valor do produto com o desconto
-		calculaDesconto(pedido);
+		setValorLiquidoPedido(pedido);
 		return pedido.geValorLiquido();
 	}
 
 	private void addPorcentagemDesconto(Pedido pedido) {
-		//Calcula o desconto pela quantidade
 		if (pedido.isDescontoPorQuantidade()) {
 			new AddPorcentagemDescontoQuantidad().addDesconto(pedido);
 		}
-		//Se tiver desconto por estoque, verifica a quantidade e calcula o desconto
 		if (pedido.isDescontoPorEstoque()) {
 			new AddPorcentagemDescontoPorEstoque().addDesconto(pedido);
 		}
 	}
 
-	private void calculaDesconto(Pedido pedido){
-		Double valorLiquido = pedido.getDesconto() * (1 + (pedido.getDesconto() / 100));
-		pedido.seValorLiquido(valorLiquido);
+	private void setValorLiquidoPedido(Pedido pedido){
+		pedido.seValorLiquido(execCalculaDesconto(pedido));
+	}
+	private Double  execCalculaDesconto(Pedido pedido){
+		return pedido.getDesconto() * (1 + (pedido.getDesconto() / 100));
 	}
 }

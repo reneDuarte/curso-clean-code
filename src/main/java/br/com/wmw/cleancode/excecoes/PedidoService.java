@@ -4,9 +4,9 @@ package br.com.wmw.cleancode.excecoes;
 //TODO: Usar uma exceção mais específica para a validação
 public class PedidoService {
 
-	public void validarPreco(final Double valor) throws Exception {
+	public void validarPreco(final Double valor)  {
 		if (valor < 0) {
-			throw new Exception("Valor deve ser maior que zero");
+			throw new ExceptionValidarPreco("Valor deve ser maior que zero");
 		}
 	}
 

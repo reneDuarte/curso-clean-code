@@ -2,14 +2,14 @@ package br.com.wmw.cleancode.nomenclaturas;
 
 public class Cliente {
 
-	private Long id;
+	private Long idCliente;
 
-	public Long getId() {
-		return this.id;
+	public Long getIdCliente() {
+		return this.idCliente;
 	}
 
-	public void setId(final Long id) {
-		this.id = id;
+	public void setIdCliente(final Long idCliente) {
+		this.idCliente = idCliente;
 	}
 
 }

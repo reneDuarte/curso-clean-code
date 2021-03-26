@@ -7,21 +7,25 @@ public class Circulo {
 	/*
 	 * Nome do atributo deve ser claro.
 	 */
-	private final Double r;
+	private final Double raio;
 
 	/*
 	 * Nome do parâmetro do construtor deve ser claro.
 	 */
-	public Circulo(final Double r) {
-		this.r = r;
+	public Circulo(final Double raio) {
+		this.raio = raio;
 	}
 
 	/*
 	 * Nome do método deve representar o objetivo do método.
 	 * O valor do PI deve ser uma constante.
 	 */
-	public double r() {
-		return 3.14 * this.r * this.r;
+	public double getArea() {
+		return Math.PI * getDiametro();
+	}
+
+	public Double getDiametro(){
+		return (2 * this.raio);
 	}
 
 }
